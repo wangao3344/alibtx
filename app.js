@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const app = express();
 require('./model/connect');
-// require('./model/user');
+require('./model/user');
 // 静态资源管理目录
 app.use(express.static(path.join(__dirname, 'public')));
 // 配置 express-session

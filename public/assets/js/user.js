@@ -40,6 +40,14 @@ $('#photo').on('change', function() {
             $('#hiddenIcon').val(data.url);
         }
     })
-
-
+});
+$.ajax({
+    type: 'get',
+    url: '/admin/showUsers',
+    success: function(response) {
+        var html = template('userTpl', {
+            data: response,
+        });
+        $('#userBox').html(html);
+    }
 })
