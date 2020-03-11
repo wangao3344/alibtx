@@ -4,4 +4,5 @@ admin.post('/login', require('./admin/login'));
 admin.get('/isLogin', require('./admin/isLogin'));
 admin.post('/loginOut', require('./admin/loginOut'));
 admin.post('/user', require('./admin/addUser'));
+admin.post('/uploads', require('./admin/uploads'));
 module.exports = admin;

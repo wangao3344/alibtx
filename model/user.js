@@ -73,9 +73,8 @@ const verifyUser = (user) => {
     //         roles: 'admin'
     //     }).then(data => {
     //         console.log(data);
-
-//     })
-// console.log(flag);
+    //     })
+    // console.log(flag);
 
 // createUser({
 //     icon: '/uploads/icon.png',
