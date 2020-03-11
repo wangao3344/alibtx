@@ -91,4 +91,78 @@ $('#modifyBox').on('submit', '#modifyForm', function() {
         }
     })
     return false;
+});
+// 删除用户的事件委托
+$('#userBox').on('click', '.delete', function() {
+    var result = confirm('确定要删除吗?');
+    if (result) {
+        var id = $(this).attr('data-id')
+        $.ajax({
+            type: 'delete',
+            url: '/admin/user/' + id,
+            success: function(response) {
+                location.reload();
+            },
+            error: function() {
+                alert('删除失败')
+            }
+
+        })
+    }
+});
+// 全选按钮
+var checkedAll = $('#checkedAll');
+// 批量删除按钮
+var deleteMany = $('#deleteMany');
+checkedAll.on('change', function() {
+    var status = $(this).prop('checked');
+    $('#userBox').find('input').prop('checked', status);
+    if (status) {
+        deleteMany.show();
+    } else {
+        deleteMany.hide();
+    }
+});
+// 事件委托
+$('#userBox').on('change', '.userStatus', function() {
+    var input = $('#userBox').find('input');
+    var checked_box = $('.userStatus').filter(':checked');
+    if (input.length == checked_box.length) {
+        checkedAll.prop('checked', true);
+    } else {
+        checkedAll.prop('checked', false);
+    }
+    if (checked_box.length > 0) {
+        deleteMany.show();
+    } else {
+        deleteMany.hide();
+    }
+});
+// 批量删除
+deleteMany.on('click', function() {
+    var flag = confirm('你确定批量删除吗？');
+    if (flag) {
+        // 获取已选中的复选框
+        var user_checked = $('#userBox').find('input').filter(':checked');
+        var ids = [];
+        user_checked.each(function(index, element) {
+            var id = $(element).attr('data-id');
+            ids.push(id);
+        });
+        var result = ids.length > 1 ? ids.join('-') : ids[0];
+
+        console.log(result);
+
+        $.ajax({
+            type: 'delete',
+            url: '/admin/user/' + result,
+            success: function(response) {
+                location.reload();
+            },
+            error: function(error) {
+                console.log(JSON.parse(error.responseText)['message']);
+
+            }
+        })
+    }
 })

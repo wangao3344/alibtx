@@ -8,4 +8,6 @@ admin.post('/uploads', require('./admin/uploads'));
 admin.get('/showUsers', require('./admin/showUsers'));
 admin.get('/user/:id', require('./admin/findUserById'));
 admin.put('/user/:id', require('./admin/modifyUser'));
+admin.delete('/user/:id', require('./admin/deleteUser'));
+admin.put('/pwd', require('./admin/modifyPassword'));
 module.exports = admin;

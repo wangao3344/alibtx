@@ -11,9 +11,11 @@ module.exports = async(req, res) => {
     // console.log(flag);
     if (flag) {
         // 公共数据
-        req.app.locals.user = result;
+        // req.app.locals.user = result;
         // 存储到session中
         req.session.username = result.username;
+        req.session.userInfor = result;
+        req.session.password = result.password;
         req.session.isLogin = true;
         console.log(req.session.isLogin);
 
