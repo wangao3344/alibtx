@@ -160,7 +160,7 @@
             </td>
             <td>{{$value.email}}</td>
             <td>{{$value.username}}</td>
-            <td>{{$value.isActive == 0 ? '未激活': '激活'}}</td>
+            <td>{{$value.isActive == 0 ? '未激活' : '激活'}}</td>
             <td>{{$value.roles == 'admin' ? '管理员' : '普通用户'}}</td>
             <td class="text-center">
                 <a href="javascript:;" class="btn btn-default btn-xs edit" data-id="{{$value._id}}">编辑</a>
@@ -177,15 +177,15 @@
                 <label>头像</label>
                 <div class="form-group">
                     <label class="form-image">
-            <input id="avatar" type="file">
-            {{if avatar}}
-            <img src="{{avatar}}" id="preview">
+            <input id="photo" type="file">
+            {{if icon}}
+            <img src="{{icon}}" id="preview">
             {{else}}
             <img src="../assets/img/default.png" id="preview">
             {{/if}}
             <i class="mask fa fa-upload"></i>
-          </label>
-                    <input type="hidden" name="avatar" id="hiddenAvatar" value="{{avatar}}">
+            </label>
+                    <input type="hidden" name="icon" id="hiddenIcon" value="{{icon}}">
                 </div>
             </div>
             <div class="form-group">
@@ -194,22 +194,22 @@
             </div>
             <div class="form-group">
                 <label>昵称</label>
-                <input class="form-control" type="text" placeholder="请输入昵称" name="nickName" value="{{nickName}}">
+                <input class="form-control" type="text" placeholder="请输入昵称" name="username" value="{{username}}">
             </div>
             <div class="form-group">
                 <div class="radio-inline">
-                    <label><input type="radio" name="status" value="0" {{status == 0 ? 'checked' : ''}}>未激活</label>
+                    <label><input type="radio" name="isActive" value="0" {{isActive == 0 ? 'checked' : ''}}>未激活</label>
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" name="status" value="1" {{status == 1 ? 'checked' : ''}}>激活</label>
+                    <label><input type="radio" name="isActive" value="1" {{isActive == 1 ? 'checked' : ''}}>激活</label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="radio-inline">
-                    <label><input type="radio" name="role" value="admin" {{role == 'admin' ? 'checked' : ''}}>超级管理员</label>
+                    <label><input type="radio" name="roles" value="admin" {{roles == 'admin' ? 'checked' : ''}}>超级管理员</label>
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" name="role" value="normal" {{role == 'normal' ? 'checked': ''}}>普通用户</label>
+                    <label><input type="radio" name="roles" value="normal" {{roles == 'normal' ? 'checked': ''}}>普通用户</label>
                 </div>
             </div>
             <div class="form-group">

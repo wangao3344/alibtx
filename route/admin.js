@@ -6,4 +6,6 @@ admin.post('/loginOut', require('./admin/loginOut'));
 admin.post('/user', require('./admin/addUser'));
 admin.post('/uploads', require('./admin/uploads'));
 admin.get('/showUsers', require('./admin/showUsers'));
+admin.get('/user/:id', require('./admin/findUserById'));
+admin.put('/user/:id', require('./admin/modifyUser'));
 module.exports = admin;

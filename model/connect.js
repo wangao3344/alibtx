@@ -8,4 +8,6 @@ mongoose
     .then(() => {
         console.log("数据库连接成功");
 
-    })
+    });
+// 使用老方法 findOneAndUpdate
+mongoose.set('useFindAndModify', false);

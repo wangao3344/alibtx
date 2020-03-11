@@ -5,7 +5,7 @@ module.exports = (req, res) => {
     var formidable = new Formidable.IncomingForm();
     formidable.parse(req, async(err, fields, files) => {
         var { icon, email, username, isActive, roles, password } = fields;
-        console.log(fields);
+        // console.log(isActive);
         try {
             await verifyUser(fields);
             var result = await createUser(fields);

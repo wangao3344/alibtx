@@ -18,7 +18,11 @@ $('#userForm').on('submit', function() {
     return false;
 });
 // 监听头像图片的变化
-$('#photo').on('change', function() {
+// $('#photo').on('change', function() {
+
+// });
+// 添加头像和修改头像（修改头像是动态生成的）,所以我们只能通过事件委托来处理
+$('#modifyBox').on('change', '#photo', function() {
     var formData = new FormData();
     // 文件内容
     var file = this.files[0];
@@ -42,12 +46,49 @@ $('#photo').on('change', function() {
     })
 });
 $.ajax({
-    type: 'get',
-    url: '/admin/showUsers',
-    success: function(response) {
-        var html = template('userTpl', {
-            data: response,
-        });
-        $('#userBox').html(html);
-    }
+        type: 'get',
+        url: '/admin/showUsers',
+        success: function(response) {
+            console.log(response);
+
+            var html = template('userTpl', {
+                data: response,
+            });
+            $('#userBox').html(html);
+        }
+    })
+    //事件委托给编辑按钮
+$('#userBox').on('click', '.edit', function() {
+    var id = $(this).attr('data-id')
+    $.ajax({
+        type: 'get',
+        url: '/admin/user/' + id,
+        success: function(response) {
+            var html = template('modifyTpl', response);
+            $('#modifyBox').html(html);
+        },
+        error: function() {
+            console.log('查询数据失败！');
+
+        }
+    })
+});
+// 由于修改表单是渲染生成的我们还需要用事件 委托
+$('#modifyBox').on('submit', '#modifyForm', function() {
+    // 我们要根据用户id修改数据，
+    var id = $(this).attr('data-id');
+    var formData = $(this).serialize();
+    $.ajax({
+        type: 'put',
+        url: '/admin/user/' + id,
+        data: formData,
+        success: function(response) {
+            location.reload();
+        },
+        error: function() {
+            console.log('修改失败');
+
+        }
+    })
+    return false;
 })

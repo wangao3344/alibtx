@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     // 保留图片默认样式
     formidable.keepExtensions = true;
     formidable.parse(req, (err, fields, files) => {
-        console.log(files.icon.path);
+        // console.log(files.icon.path);
         if (!err) {
             res.send(JSON.stringify({ url: files.icon.path.split('public')[1] }));
         }
