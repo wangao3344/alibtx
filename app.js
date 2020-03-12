@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 
 // 一级路由
 app.use('/admin', admin);
+app.use('/article', require('./route/article'));
 app.listen(80);
 console.log('服务器开启成功');
 //错误处理器
