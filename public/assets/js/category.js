@@ -55,3 +55,64 @@ $('#edit-box').on('submit', '#edit-form', function() {
     })
     return false;
 });
+// 删除操作
+$('#cateBox').on('click', '.delete', function() {
+    var flag = confirm('你确定要删除吗？');
+    if (flag) {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '/article/category/' + id,
+            type: 'delete',
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                console.log('删除失败');
+
+            }
+        })
+    }
+});
+// 批量删除
+var removeAll = $('#removeAll');
+// 全选按钮
+var checkedAll = $('#checkedAll');
+checkedAll.on('change', function() {
+    var status = $(this).prop('checked');
+    $('.item').prop('checked', status);
+    if (status) {
+        removeAll.show();
+    } else {
+        removeAll.hide();
+    }
+});
+// 渲染出来的复选框
+$('#cateBox').on('change', '.item', function() {
+    var total = $('.item').length;
+    var checkedTotal = $('.item').filter(':checked').length
+    if (total == checkedTotal) {
+        checkedAll.prop('checked', true);
+    } else {
+        checkedAll.prop('checked', false);
+    }
+    if (checkedTotal > 0) {
+        removeAll.show();
+    } else {
+        removeAll.hide();
+    }
+});
+removeAll.on('click', function() {
+    var checkedBoxes = $('.item').filter(':checked');
+    var ids = [];
+    checkedBoxes.each(function(index, element) {
+        ids.push($(element).attr('data-id'));
+    });
+    var params = ids.length == 1 ? ids[0] : ids.join('-');
+    $.ajax({
+        url: '/article/category/' + params,
+        type: 'delete',
+        success: function() {
+            location.reload();
+        }
+    })
+});
