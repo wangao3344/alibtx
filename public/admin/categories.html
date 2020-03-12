@@ -33,7 +33,7 @@
         <strong>错误！</strong>发生XXX错误
       </div> -->
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" id='edit-box'>
                     <form id='category'>
                         <h2>添加分类</h2>
                         <div class="form-group">
@@ -123,6 +123,22 @@
             </td>
         </tr>
         {{/each}}
+    </script>
+    <script type="text/html" id="editTpl">
+        <form id='edit-form' data-id="{{_id}}">
+            <h2>编辑分类</h2>
+            <div class="form-group">
+                <label>名称</label>
+                <input class="form-control" name="categories" type="text" placeholder="请输入分类名称" value="{{categories}}">
+            </div>
+            <div class="form-group">
+                <label>图标</label>
+                <input class="form-control" name="className" type="text" placeholder="请输入分类图标类名" value="{{className}}">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">修改</button>
+            </div>
+        </form>
     </script>
     <script src="../assets/js/category.js"></script>
 </body>

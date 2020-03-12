@@ -26,5 +26,32 @@ $.ajax({
 // 分类信息的修改功能
 $('#cateBox').on('click', '.edit', function() {
     var id = $(this).attr('data-id');
-    alert(id);
+    $.ajax({
+        url: '/article/category/' + id,
+        method: 'get',
+        success: function(response) {
+            var html = template('editTpl', response);
+            $('#edit-box').html(html);
+
+        }
+    });
+});
+// 修改分类信息的提交事件委托
+$('#edit-box').on('submit', '#edit-form', function() {
+    var id = $(this).attr('data-id');
+    var formData = $(this).serialize();
+    $.ajax({
+        url: '/article/category/' + id,
+        type: 'put',
+        data: formData,
+        success: function() {
+            location.reload();
+        },
+        error: function() {
+            console.log('修改失败');
+
+        }
+
+    })
+    return false;
 });
