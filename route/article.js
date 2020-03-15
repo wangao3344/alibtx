@@ -5,4 +5,6 @@ article.get('/category/:id', require('./article/findCategoryByid'));
 article.get('/listCategory', require('./article/listCategory'));
 article.put('/category/:id', require('./article/modifyCategoryById'));
 article.delete('/category/:id', require('./article/deleteCategory'));
+article.post('/uploads', require('./article/uploadsArticlePicture'));
+article.post('/add', require('./article/addArticle'));
 module.exports = article;

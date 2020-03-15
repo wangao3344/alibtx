@@ -6,8 +6,10 @@ module.exports = (req, res) => {
     // console.log(file_path);
     // 上传图片的保存目录
     formidable.uploadDir = file_path;
+
     // 保留图片默认样式
     formidable.keepExtensions = true;
+
     formidable.parse(req, (err, fields, files) => {
         // console.log(files.icon.path);
         if (!err) {
