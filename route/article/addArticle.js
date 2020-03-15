@@ -6,6 +6,7 @@ module.exports = (req, res) => {
         let { publishDate } = fields;
         publishDate = Date.parse(publishDate);
         fields.publishDate = publishDate;
+        fields.author = req.session.userInfor._id;
         let result = await Article.create(fields);
         res.send(result);
 

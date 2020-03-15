@@ -26,6 +26,11 @@ const articleSchema = new mongoose.Schema({
         // true:已发布 false:草稿
         type: Number,
         default: 0,
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, '作者字段不能为空'],
     }
 });
 const Article = mongoose.model('Article', articleSchema);

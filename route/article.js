@@ -7,4 +7,5 @@ article.put('/category/:id', require('./article/modifyCategoryById'));
 article.delete('/category/:id', require('./article/deleteCategory'));
 article.post('/uploads', require('./article/uploadsArticlePicture'));
 article.post('/add', require('./article/addArticle'));
+article.get('/showArticles', require('./article/showAritcles'));
 module.exports = article;
